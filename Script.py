@@ -2,7 +2,6 @@
 # Subscribe YouTube Channel For Amazing Bot @movie_file_20
 # Ask Doubt on telegram @KingVJ01
 
-
 class script(object):
     START_TXT = """<b>ʜᴇʟᴏ {},
 ɪ ᴄᴀɴ ᴘʀᴏᴠɪᴅᴇ ᴍᴏᴠɪᴇs ᴀɴᴅ sᴇʀɪᴇs,
@@ -689,11 +688,9 @@ Also your tutorial will be Added Your Group..."""
 • ᴜꜱᴇʀɴᴀᴍᴇ : @MS_Contact_Robot
 • ᴘᴇʀᴍᴀɴᴇɴᴛ ᴅᴍ ʟɪɴᴋ : <a href='t.me/MS_Contact_Robot'>ᴄʟɪᴄᴋ ʜᴇʀᴇ</a></b>
 """
-
-
-# Don't Remove Credit @movie_file_20
-# Subscribe YouTube Channel For Amazing Bot @movie_file_20
-# Ask Doubt on telegram @KingVJ01
-
-
     
+    MYPLAN = """Test"""
+
+    NOPLAN = """Test"""
+    
+    PLANS = """Test"""
