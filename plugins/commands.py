@@ -317,17 +317,22 @@ async def start(client, message):
                     f_caption=f_caption
             if f_caption is None:
                 f_caption = f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files1.file_name.split()))}"
-            if not await check_verification(client, message.from_user.id) and VERIFY == True:
-                btn = [[
-                    InlineKeyboardButton("✅ ᴠᴇʀɪғʏ ✅", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
-                    InlineKeyboardButton("⁉️ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ⁉️", url='https://t.me/+w8P6fUwL8illMjU1')
-                ]]
-                await message.reply_text(
-                    text="<b>‼️ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴀʟᴇʀᴛ ‼️ \n\n🔥 ᴛᴏ ᴜɴʟᴏᴄᴋ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ ᴛᴏ ꜰɪʟᴇꜱ ꜰᴏʀ ꜰᴇᴡ ʜᴏᴜʀꜱ ✅\n\n♨️ ᴠᴇʀɪꜰʏ ʏᴏᴜʀꜱᴇʟꜰ. 🚀</b>",
-                    protect_content=True,
-                    reply_markup=InlineKeyboardMarkup(btn)
-                )
-                return
+            if not await db.has_premium_access(message.from_user.id):
+                if not await check_verification(client, message.from_user.id) and VERIFY == True:
+                    btn = [[
+                        InlineKeyboardButton("✅ ᴠᴇʀɪғʏ ✅", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
+                        InlineKeyboardButton("⁉️ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ⁉️", url='https://t.me/+w8P6fUwL8illMjU1')
+                    ]]
+                    await message.reply_text(
+                        text="<b>‼️ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴀʟᴇʀᴛ ‼️ \n\n🔥 ᴛᴏ ᴜɴʟᴏᴄᴋ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ ᴛᴏ ꜰɪʟᴇꜱ ꜰᴏʀ ꜰᴇᴡ ʜᴏᴜʀꜱ ✅\n\n♨️ ᴠᴇʀɪꜰʏ ʏᴏᴜʀꜱᴇʟꜰ. 🚀</b>",
+                        protect_content=True,
+                        reply_markup=InlineKeyboardMarkup(btn)
+                    )
+                    return
+                else:
+                    pass
+            else:
+                pass
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
@@ -381,17 +386,22 @@ async def start(client, message):
     if not files_:
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
-            if not await check_verification(client, message.from_user.id) and VERIFY == True:
-                btn = [[
-                    InlineKeyboardButton("✅ ᴠᴇʀɪғʏ ✅", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
-                    InlineKeyboardButton("⁉️ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ⁉️", url='https://t.me/+w8P6fUwL8illMjU1')
-                ]]
-                await message.reply_text(
-                    text="<b>‼️ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴀʟᴇʀᴛ ‼️ \n\n🔥 ᴛᴏ ᴜɴʟᴏᴄᴋ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ ᴛᴏ ꜰɪʟᴇꜱ ꜰᴏʀ ꜰᴇᴡ ʜᴏᴜʀꜱ ✅\n\n♨️ ᴠᴇʀɪꜰʏ ʏᴏᴜʀꜱᴇʟꜰ. 🚀</b>",
-                    protect_content=True,
-                    reply_markup=InlineKeyboardMarkup(btn)
-                )
-                return
+            if not await db.has_premium_access(message.from_user.id):
+                if not await check_verification(client, message.from_user.id) and VERIFY == True:
+                    btn = [[
+                        InlineKeyboardButton("✅ ᴠᴇʀɪғʏ ✅", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
+                        InlineKeyboardButton("⁉️ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ⁉️", url='https://t.me/+w8P6fUwL8illMjU1')
+                    ]]
+                    await message.reply_text(
+                        text="<b>‼️ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴀʟᴇʀᴛ ‼️ \n\n🔥 ᴛᴏ ᴜɴʟᴏᴄᴋ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ ᴛᴏ ꜰɪʟᴇꜱ ꜰᴏʀ ꜰᴇᴡ ʜᴏᴜʀꜱ ✅\n\n♨️ ᴠᴇʀɪꜰʏ ʏᴏᴜʀꜱᴇʟꜰ. 🚀</b>",
+                        protect_content=True,
+                        reply_markup=InlineKeyboardMarkup(btn)
+                    )
+                    return
+                else:
+                    pass
+            else:
+                pass
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
@@ -441,17 +451,22 @@ async def start(client, message):
             f_caption=f_caption
     if f_caption is None:
         f_caption = f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}"
-    if not await check_verification(client, message.from_user.id) and VERIFY == True:
-        btn = [[
-            InlineKeyboardButton("✅ ᴠᴇʀɪғʏ ✅", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
-            InlineKeyboardButton("⁉️ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ⁉️", url='https://t.me/+w8P6fUwL8illMjU1')
-        ]]
-        await message.reply_text(
-            text="<b>‼️ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴀʟᴇʀᴛ ‼️ \n\n🔥 ᴛᴏ ᴜɴʟᴏᴄᴋ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ ᴛᴏ ꜰɪʟᴇꜱ ꜰᴏʀ ꜰᴇᴡ ʜᴏᴜʀꜱ ✅\n\n♨️ ᴠᴇʀɪꜰʏ ʏᴏᴜʀꜱᴇʟꜰ. 🚀</b>",
-            protect_content=True,
-            reply_markup=InlineKeyboardMarkup(btn)
-        )
-        return
+    if not await db.has_premium_access(message.from_user.id):
+        if not await check_verification(client, message.from_user.id) and VERIFY == True:
+            btn = [[
+                InlineKeyboardButton("✅ ᴠᴇʀɪғʏ ✅", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=")),
+                InlineKeyboardButton("⁉️ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ⁉️", url='https://t.me/+w8P6fUwL8illMjU1')
+            ]]
+            await message.reply_text(
+                text="<b>‼️ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴀʟᴇʀᴛ ‼️ \n\n🔥 ᴛᴏ ᴜɴʟᴏᴄᴋ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ ᴛᴏ ꜰɪʟᴇꜱ ꜰᴏʀ ꜰᴇᴡ ʜᴏᴜʀꜱ ✅\n\n♨️ ᴠᴇʀɪꜰʏ ʏᴏᴜʀꜱᴇʟꜰ. 🚀</b>",
+                protect_content=True,
+                reply_markup=InlineKeyboardMarkup(btn)
+            )
+            return
+        else:
+            pass
+    else:
+        pass
     msg = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
