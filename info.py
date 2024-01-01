@@ -2,7 +2,6 @@
 # Subscribe YouTube Channel For Amazing Bot @movie_file_20
 # Ask Doubt on telegram @KingVJ01
 
-
 import re
 from os import environ,getenv
 from Script import script 
@@ -32,6 +31,7 @@ MELCOW_VID = environ.get("MELCOW_VID", "https://graph.org/file/8a567f3ad1905a752
 SPELL_IMG = environ.get("SPELL_IMG", "https://graph.org/file/2be2ef024a5bbf336b7d5.jpg")
 
 # Admins, Channels & Users
+OWNER_ID = int(environ.get("OWNER_ID", "")) # Bot Owner Id
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '6433510598').split()]
 CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1001953586887').split()]
 auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '6433510598').split()]
