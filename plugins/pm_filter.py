@@ -1283,6 +1283,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "sinfo":
         await query.answer(text=script.SINFO, show_alert=True)
+        
+    elif query.data == "upgrade":
+        buttons = [[
+            InlineKeyboardButton("Close", callback_data="close_data")
+        ]]
+        reply_markup=InlineKeyboardMarkup(buttons)
+        await query.message.reply_text(
+            text=script.PLANS,
+            disable_web_page_preview=True,
+            reply_markup=reply_markup
+        )
 
     elif query.data == "start":
         buttons = [[
