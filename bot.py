@@ -43,7 +43,33 @@ from pyrogram import idle
 from lazybot import LazyPrincessBot
 from util.keepalive import ping_server
 from lazybot.clients import initialize_clients
-
+from asyncio import sleep
+ 
+async def check_expired_premium(client):
+    while 1:
+        data = await db.get_expired(datetime.now())
+        for user in data:
+            user_id = user["id"]
+            await db.remove_premium_access(user_id)
+            try:
+                user = await client.get_users(user_id)
+                tz = pytz.timezone("Asia/Kolkata")
+                now = datetime.now(tz)
+                today = now.strftime("%d-%m-%Y %I:%M:%S")
+                buttons = [[
+                    InlineKeyboardButton("💳 Upgrade", callback_data="upgrade"),
+                    InlineKeyboardButton("❌️ Close", callback_data="close_data")
+                ]]
+                reply_markup=InlineKeyboardMarkup(buttons)
+                await client.send_message(
+                    chat_id=user_id,
+                    text=f"👋 Your paid plan has **Expired** on {today} \n\nIf you want to use premium benefits, You can do so by Paying.",
+                    reply_markup=reply_markup
+                )
+            except Exception as e:
+                print(e)
+            await sleep(0.5)
+        await sleep(1)
 
 ppath = "plugins/*.py"
 files = glob.glob(ppath)
@@ -79,6 +105,7 @@ async def Lazy_start():
     temp.U_NAME = me.username
     temp.B_NAME = me.first_name
     LazyPrincessBot.username = '@' + me.username
+    LazyPrincessBot.loop.create_task(check_expired_premium(LazyPrincessBot))
     logging.info(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}.")
     logging.info(LOG_STR)
     logging.info(script.LOGO)
